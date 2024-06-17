@@ -10,13 +10,14 @@ const FriendAlarmModal = ({ onAlarmClose, onRefreshFriendList, setNewFriendReque
   // 요청에 대한 "수락" 함수
   const handleAcceptRequest = async (alarmId) => {
     try {
-      const response = await axios.put(`https://j10d202.p.ssafy.io/api/alarm/accept/${alarmId}/invitation`, {}, {
+      const response = await axios.put(`https://toogui.site/api/alarm/accept/${alarmId}/invitation`, {}, {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }
       });
       console.log(response.data);
       alert('성공적으로 친구가 맺어졌어요 !');
+
       onRefreshFriendList(); // 친구 목록 다시 업데이트해주기
       handleAlarmClose();
     } catch (error) {
@@ -28,7 +29,7 @@ const FriendAlarmModal = ({ onAlarmClose, onRefreshFriendList, setNewFriendReque
   // 요청에 대한 "거절" 함수
   const handleRejectRequest = async (alarmId) => {
     try {
-      const response = await axios.put(`https://j10d202.p.ssafy.io/api/alarm/reject/${alarmId}/invitation`, {}, {
+      const response = await axios.put(`https://toogui.site/api/alarm/reject/${alarmId}/invitation`, {}, {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }
@@ -52,7 +53,7 @@ const FriendAlarmModal = ({ onAlarmClose, onRefreshFriendList, setNewFriendReque
   useEffect(() => {
     const fetchFriendRequests = async () => {
       try {
-        const response = await axios.get(`https://j10d202.p.ssafy.io/api/alarm/${userId}/list`, {
+        const response = await axios.get(`https://toogui.site/api/alarm/${userId}/list`, {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
