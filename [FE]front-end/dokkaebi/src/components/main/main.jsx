@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Explanation from "../hub/Explanation";
+import { useNavigate } from "react-router-dom";
 import Logo from "../../images/main/logo.gif";
 import playButton from "../../images/main/button_play1.png";
 import playButtonClicked from "../../images/main/button_play2.png";
-import questionMark from "../../images/main/questionMark.png";
 import styles from "./main.module.css";
 
 export default function Main() {

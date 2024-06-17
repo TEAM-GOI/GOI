@@ -18,7 +18,7 @@ export default function AAA() {
 
     axios
       .post(
-        "https://j10d202.p.ssafy.io/api/square/fast",
+        "https://toogui.site/api/square/fast",
         {},
         {
           headers: { Authorization: `Bearer ${accessToken}` },
@@ -36,7 +36,7 @@ export default function AAA() {
 
     axios
       .post(
-        "https://j10d202.p.ssafy.io/api/room/enter",
+        "https://toogui.site/api/room/enter",
         {
           roomId: roomId,
         },
