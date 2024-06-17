@@ -248,7 +248,7 @@ export default function userReadyRoom() {
           },
         }
       );
-      alert("강퇴했어요");
+      alert("플레이어를 강퇴했습니다.");
       // 강퇴 처리 후유저 리스트를 다시 업데이트
       // setUserList(response.data);
     } catch (error) {

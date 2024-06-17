@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { c } from "vite/dist/node/types.d-AKzkD8vd";
 
 export default function AAA() {
   let retryCount = 0;
@@ -84,5 +83,5 @@ export default function AAA() {
       });
   };
 
-  return <div>AAA</div>;
+  return <div></div>;
 }
