@@ -73,7 +73,11 @@ public class SecurityConfig {
                 "http://localhost:5173", "http://127.0.0.1:5173", "https://j10d202.p.ssafy.io",
                 "https://j10d202.p.ssafy.io:8080" , "https://j10d202.p.ssafy.io:8080/api",
                 "https://j10d202.p.ssafy.io:8080/ws-stomp", "http://localhost:8080/ws-stomp",
-                "https://j10d202.p.ssafy.io/ws-stomp"
+                "https://j10d202.p.ssafy.io/ws-stomp",
+                "https://toogui.site",
+                "https://toogui.site:8080/api",
+                "https://toogui.site:8080/ws-stomp",
+                "https://toogui.site/ws-stomp"
         ));
 
         configuration.setAllowedMethods(Arrays.asList("GET","POST","PUT","PATCH","DELETE"));
