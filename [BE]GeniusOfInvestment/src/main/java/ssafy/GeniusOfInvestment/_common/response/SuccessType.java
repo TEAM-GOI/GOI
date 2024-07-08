@@ -12,6 +12,7 @@ public enum SuccessType {
 
     //****************************User****************************//
     //SIGNUP_SUCCESSFULLY("회원 가입 성공"),
+    LOGIN_SUCCESSFULLY("로그인 성공"),
     LOGOUT_SUCCESSFULLY("로그아웃 성공"),
     UPDATE_USER_IMAGE_SUCCESSFULLY("프로필 이미지 수정 성공"),
     UPDATE_USER_NICKNAME_SUCCESSFULLY("닉네임 수정 성공"),
