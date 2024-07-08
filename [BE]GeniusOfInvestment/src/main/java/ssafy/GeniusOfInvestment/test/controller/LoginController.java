@@ -16,7 +16,7 @@ import ssafy.GeniusOfInvestment.test.service.LoginService;
 
 @Slf4j
 @RestController
-@RequestMapping("api/test")
+@RequestMapping("/api/test")
 @RequiredArgsConstructor
 public class LoginController {
     private final AuthTokenService authTokenService;
