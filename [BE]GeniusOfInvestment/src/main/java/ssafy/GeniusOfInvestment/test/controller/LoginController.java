@@ -23,7 +23,7 @@ public class LoginController {
     private final LoginService loginService;
 
     private final JwtUtil jwtUtil;
-    @GetMapping("/login")
+    @PostMapping("/dev")
     public SuccessResponse<String> login(@RequestBody UserLoginRequest request){
 
         if(!loginService.checkLoginInfo(request.userId(),request.userPwd())) {
