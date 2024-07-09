@@ -8,7 +8,6 @@ import ssafy.GeniusOfInvestment._common.jwt.JwtUtil;
 import ssafy.GeniusOfInvestment._common.response.ErrorType;
 import ssafy.GeniusOfInvestment._common.response.SuccessResponse;
 import ssafy.GeniusOfInvestment._common.response.SuccessType;
-import ssafy.GeniusOfInvestment.auth.service.AuthTokenService;
 import ssafy.GeniusOfInvestment.test.service.LoginService;
 
 @Slf4j
@@ -16,12 +15,12 @@ import ssafy.GeniusOfInvestment.test.service.LoginService;
 @RequestMapping("/api/test")
 @RequiredArgsConstructor
 public class LoginController {
-    private final AuthTokenService authTokenService;
-    private final LoginService loginService;
 
+    private final LoginService loginService;
     private final JwtUtil jwtUtil;
-    @PostMapping("/dev")
-    public SuccessResponse<String> login(@RequestBody String request){
+
+    @PostMapping("/dev/{userId}")
+    public SuccessResponse<String> login(@PathVariable("userId") String request){
 
         if(!loginService.checkLoginInfo(request)) {
             throw new CustomBadRequestException(ErrorType.NOT_FOUND_USER);
