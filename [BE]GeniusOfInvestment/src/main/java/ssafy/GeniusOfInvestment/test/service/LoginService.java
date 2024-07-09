@@ -15,11 +15,11 @@ import java.util.Optional;
 public class LoginService {
     private final UserRepository userRepository;
 
-    public boolean checkLoginInfo(String id, String pwd) {
+    public boolean checkLoginInfo(String id) {
         Optional<User> byId = userRepository.findById(Long.valueOf(id));
         if (byId.isEmpty())
             return false;
-        else if (byId.get().getId().equals(id) && byId.get().getPassword().equals(pwd))
+        else if (String.valueOf(byId.get().getId()).equals(id))
             return true;
         return false;
     }
