@@ -54,7 +54,7 @@ public class RoomChatController {
     @EventListener(SessionConnectEvent.class)
     public void handleWebSocketConnectListener(SessionConnectEvent event) {
         String sessionId = event.getMessage().getHeaders().get("simpSessionId").toString();
-        //log.info("웹소켓 연결시 Event에서 sessionId: " + sessionId);
+        log.info("웹소켓 연결시 Event에서 sessionId: " + sessionId);
 //        StompHeaderAccessor headerAccesor = StompHeaderAccessor.wrap(event.getMessage());
 //        String sessionId = headerAccesor.getSessionId();
         if(event.getMessage().getHeaders().get("nativeHeaders") == null){
@@ -62,7 +62,7 @@ public class RoomChatController {
 //            throw new CustomBadRequestException(ErrorType.NEED_TOKEN);
         }
         String str = event.getMessage().getHeaders().get("nativeHeaders").toString();
-        //log.info("웹소켓 연결시 Event에서 받아온 헤더 정보: " + str);
+        log.info("웹소켓 연결시 Event에서 받아온 헤더 정보: " + str);
         int startIndex = str.indexOf("Bearer") + 7;
         int endIdx = str.indexOf(",") - 1;
 
@@ -76,18 +76,18 @@ public class RoomChatController {
 
         if(Boolean.TRUE.equals(redisTemplate.hasKey(userId))){ //키값이 존재한다.(5초안에 재접속)
             String tmp = (String) redisTemplate.opsForValue().get(userId);
-            //log.info("연결 event의 redis에서 얻어온 값: " + tmp);
-            //log.info("5초안에 재접속 성공");
+            log.info("연결 event의 redis에서 얻어온 값: " + tmp);
+            log.info("5초안에 재접속 성공");
             redisTemplate.delete(userId);
         }
         sessions.put(sessionId, userId);
-        //log.info("Received a new web socket connection");
+        log.info("Received a new web socket connection");
     }
     @EventListener(SessionDisconnectEvent.class)
     public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {
         StompHeaderAccessor headerAccesor = StompHeaderAccessor.wrap(event.getMessage());
         String sessionId = headerAccesor.getSessionId();
-        //log.info("웹소켓 연결 해제(disconnect)시 Event속 map에서 추출한 userId: " + sessions.get(sessionId));
+        log.info("웹소켓 연결 해제(disconnect)시 Event속 map에서 추출한 userId: " + sessions.get(sessionId));
         String userId = sessions.get(sessionId);
 
         if(userId != null){
@@ -98,7 +98,7 @@ public class RoomChatController {
                 @Override
                 public void run() {
                     if(Boolean.TRUE.equals(redisTemplate.hasKey(userId))){ //5초안에 재접속 실패
-                        //log.info("유저 아직 재접속 안했지롱");
+                        log.info("유저 아직 재접속 안했지롱");
                         Long uId = Long.valueOf(userId);
 
                         Optional<User> user = userRepository.findById(uId);
@@ -122,7 +122,7 @@ public class RoomChatController {
 //            throw new CustomBadRequestException(ErrorType.FAIL_TO_GET_USER_DISCONNECT);
         }
 
-        //log.info("sessionId Disconnected : " + sessionId);
+        log.info("sessionId Disconnected : " + sessionId);
     }
 
     public void delGameRoom(User user){
