@@ -93,6 +93,7 @@ public class GameController {
             if(rst.getRemainTurn() <= -1){
                 redisTemplate.delete("thread" + grId);
                 sendMsg(grId, rst, MessageDto.MessageType.END_GAME);
+                json.put("status", "END"); //============
             }else {
                 sendMsg(grId, rst, MessageDto.MessageType.STOCK_MARKET);
 //                log.info("새로운 타이머 생성 전");
