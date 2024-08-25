@@ -61,9 +61,9 @@ public class ChannelService {
         }
         channel = ochannel.get();
 
-        // 채널을 들어갈 수 있는지 부터 확인해야함
-        if (channel.getParticipants().size() > 100)
-            throw new CustomBadRequestException(ErrorType.CHANNEL_IS_FULL);
+          //채널을 들어갈 수 있는지 부터 확인해야함
+//        if (channel.getParticipants().size() > 100)
+//            throw new CustomBadRequestException(ErrorType.CHANNEL_IS_FULL);
 
 //        User enterUser;
 //        // 채널을 들어가게되면 DB USER 수정 ch
