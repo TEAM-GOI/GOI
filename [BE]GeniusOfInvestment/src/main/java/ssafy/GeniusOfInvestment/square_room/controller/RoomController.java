@@ -33,7 +33,7 @@ public class RoomController {
 
     //방 들어가기
     @PostMapping("/enter")
-    public List<RoomPartInfo> enterRoom(@AuthenticationPrincipal User user, @RequestBody RoomEnterRequest enterInfo){
+    public SuccessResponse<List<RoomPartInfo>> enterRoom(@AuthenticationPrincipal User user, @RequestBody RoomEnterRequest enterInfo){
         //log.info("RoomController enterRoom start");
         List<RoomPartInfo> rst = roomService.enterRoom(user, enterInfo);
         //websocket 들어감 보내주기
@@ -43,17 +43,17 @@ public class RoomController {
                         .type(MessageDto.MessageType.ROOM_ENTER)
                         .data(rst)
                         .build());
-        return rst;
+        return SuccessResponse.of(SuccessType.ENTER_ROOM_SUCCESSFULLY,rst);
     }
 
     @GetMapping("/userlist/{id}")
-    public List<RoomPartInfo> getUserList(@PathVariable("id") Long rId){
-        return roomService.getUserList(rId);
+    public SuccessResponse<List<RoomPartInfo>> getUserList(@PathVariable("id") Long rId){
+        return SuccessResponse.of(SuccessType.GET_ROOM_USER_LIST_SUCCESSFULLY,roomService.getUserList(rId));
     }
 
     //방 나가기
     @DeleteMapping("/exit/{id}")
-    public Map<String, String> exitRoom(@AuthenticationPrincipal User user, @PathVariable("id") Long rId){
+    public SuccessResponse<Void> exitRoom(@AuthenticationPrincipal User user, @PathVariable("id") Long rId){
         List<RoomPartInfo> rInfo = roomService.exitRoom(user, rId);
         messageTemplate.convertAndSend("/sub/room/chat/" + rId,
                 MessageDto
@@ -62,13 +62,11 @@ public class RoomController {
                         .data(rInfo)
                         .build());
 
-        Map<String, String> json = new HashMap<>();
-        json.put("msg", "방 나가기 완료");
-        return json;
+        return SuccessResponse.from(SuccessType.EXIT_ROOM_SUCCESSFULLY);
     }
 
     @PutMapping("/kick")
-    public List<RoomPartInfo> kickUser(@AuthenticationPrincipal User user, @RequestBody KickRequest kinfo){
+    public SuccessResponse<List<RoomPartInfo>> kickUser(@AuthenticationPrincipal User user, @RequestBody KickRequest kinfo){
         //log.info("RoomController kickUser start");
         List<RoomPartInfo> rInfo = roomService.kickUser(user, kinfo.userId(), kinfo.roomId());
         messageTemplate.convertAndSend("/sub/room/chat/" + kinfo.roomId(),
@@ -78,20 +76,16 @@ public class RoomController {
                         .data(rInfo)
                         .build());
 
-        Map<String, String> json = new HashMap<>();
-        json.put("msg", "유저 강퇴 완료");
-        return rInfo;
+        return SuccessResponse.of(SuccessType.USER_KICK_OUT_SUCCESSFULLY,rInfo);
     }
 
     @PostMapping("/ready/{id}")
-    public Map<String, String> readyRoom(@AuthenticationPrincipal User user, @PathVariable("id") Long grId){
+    public SuccessResponse<ReadyResponse> readyRoom(@AuthenticationPrincipal User user, @PathVariable("id") Long grId){
         ReadyResponse rsp = roomService.doingRoomReady(user, grId);
-        Map<String, String> json = new HashMap<>();
         //status = 0이면 레디를 한것, status = -1이면 레디를 취소한 것
         //status = 1이면 전체가 레디를 완료한 것
         sendMsg(grId, rsp, MessageDto.MessageType.READY);
-        json.put("msg", "레디 완료");
-        return json;
+        return SuccessResponse.of(SuccessType.USER_READY_SUCCESSFULLY,rsp);
     }
 
     public void sendMsg(Long grId, Object obj, MessageDto.MessageType type){
