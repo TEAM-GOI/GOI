@@ -6,7 +6,7 @@ spring:
             ddl-auto: create-drop
         properties:
             hibernate:
-                show_sql: false
+                show_sql: true
                 format_sql: false
                 highlight_sql: false
         defer-datasource-initialization: true
@@ -28,7 +28,7 @@ spring:
     datasource:
         driver-class-name: org.mariadb.jdbc.Driver
         username: ENC(bGvDWXdgAsFNCvvwrW9+eQ==)
-        password: ENC(yb9c5bnqFBYAoXvuBddv6A==)
+        password: ENC(UrEp1Jb5fjGNUz2FDoo4xQ==)
         url: ENC(VDulTKVcDKlyXOvmiK5/diPARDSH31SjTdWYIFrdcRrKKCExvC2x5jPireljXeSYkULO1V5zzEW+/0RrGu8tJlrRo9ZxvcXlIyrGMCttEZKYy501NI12s23HuzL3xCyU0uZzFFicleA=)
 
     mvc:
