@@ -2,7 +2,6 @@ package ssafy.GeniusOfInvestment._common.response;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 
 @Getter
 @RequiredArgsConstructor
@@ -51,11 +50,26 @@ public enum SuccessType {
     ENTER_ROOM_SUCCESSFULLY("방 접속 성공"),
     EXIT_ROOM_SUCCESSFULLY("유저 방 나가기 성공"),
     GET_ROOM_USER_LIST_SUCCESSFULLY("유저 리스트 조회 성공"),
-    USER_KICK_OUT_SUCCESSFULLY("유저 강퇴 성공"), USER_READY_SUCCESSFULLY("유저 레디 성공");
+    USER_KICK_OUT_SUCCESSFULLY("유저 강퇴 성공"), USER_READY_SUCCESSFULLY("유저 레디 성공"),
 
 
     //****************************Game****************************//
+    GAME_INIT_INFO_COMPLETE("게임 초기 정보 세팅 완료"),
+    GAME_START("게임 시작 완료"),
+    NEXT_TURN("다음 턴 시작"),
+    READY("레디 완료"),
+    END_GAME("게임 종료"),
+    EXIT_GAME("게임 탈퇴"),
 
+
+    //****************************Game****************************//
+    TRADING_INFO_SUCCESSFULLY("주식 거래 내역 조회 성공"),
+    ITEM_INFO_SUCCESSFULLY("해당 주식 정보 조회 성공"),
+    BUY_INFO_SUCCESSFULLY("주식 정보 구매 성공"),
+    BUY_INFO_LIST_SUCCESSFULLY("구매했던 정보 목록 조회 성공"),
+    CHART_INFO_SUCCESSFULLY("해당 종목 차트 정보 조회 성공"),
+    BUY_STOCK_SUCCESSFULLY("주식 매수 성공"),
+    SELL_STOCK_SUCCESSFULLY("주식 매도 성공");
 
 
     private final String msg; //success message
