@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.coyote.BadRequestException;
 import org.hibernate.TypeMismatchException;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -53,6 +54,14 @@ public class GlobalExceptionHandler {
     protected ErrorRoomResponse handleCustomRoomEnterException(CustomRoomEnterException e) {
         log.error("[CustomRoomEnterException]");
         return ErrorRoomResponse.of(e.getErrorType(),e.getRoomId());
+    }
+
+    //validation에서 dto에서 @NotNull과 같은 것이 붙은 필드에 대해서 BindException이 발생했을때
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(BindException.class)
+    protected ErrorResponse bindException(BindException e) {
+        log.error("[BindException]");
+        return ErrorResponse.of(HttpStatus.BAD_REQUEST, e.getBindingResult().getAllErrors().get(0).getDefaultMessage());
     }
 
 }

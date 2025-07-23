@@ -1,4 +1,13 @@
 spring:
+  jpa:
+    hibernate:
+      naming:
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+      ddl-auto: none
+
+  sql:
+    init:
+      mode: never
 
   data:
     web:

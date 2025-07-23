@@ -147,17 +147,14 @@ public class SquareService {
 
         //받아온 방정보
         List<User> users = new ArrayList<>();
-        try {
-            Optional<Channel> byId = channelRepository.findById(channelnum);
-            if (byId.isPresent())
-                users = userRepository.findAllByChannel(byId.get());
-        } catch (Exception e) {
+        Optional<Channel> byId = channelRepository.findById(channelnum);
+        if (byId.isEmpty())
             throw new CustomBadRequestException(ErrorType.CHANNEL_NOT_FOUND);
-        }
 
-        for (User u : users) {
+        Channel c = byId.get();
+        for (User u : c.getParticipants()) {
             int nowStatus; // 0 == 로그인 1 == 대기중 2 == 게임중
-            if (redisUserRepository.getOneRedisUser(u.getId()) == null) nowStatus = 0; // 로그인 중
+            if (redisUserRepository.getOneRedisUser(u.getId()) == null) nowStatus = 0; // 로그인 중(어느 방에도 참여하지 않은 상태)
             else {
                 if (redisUserRepository.getOneRedisUser(u.getId()).isStatus())
                     nowStatus = 2; // 게임 중

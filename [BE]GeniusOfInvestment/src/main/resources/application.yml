@@ -22,14 +22,14 @@ spring:
         redis:
             host: ENC(NlaOnFEohOhLwfm3BQKYzQxJYtI72xNO)
             port: 6379
-            password: ENC(cAV37F+FL3IUpEFNaq367sJN+c36j4oB)
+#            password: ENC(cAV37F+FL3IUpEFNaq367sJN+c36j4oB)
 
 
     datasource:
-        driver-class-name: org.mariadb.jdbc.Driver
+        driver-class-name: com.mysql.cj.jdbc.Driver
         username: ENC(bGvDWXdgAsFNCvvwrW9+eQ==)
-        password: ENC(UrEp1Jb5fjGNUz2FDoo4xQ==)
-        url: ENC(VDulTKVcDKlyXOvmiK5/diPARDSH31SjTdWYIFrdcRrKKCExvC2x5jPireljXeSYkULO1V5zzEW+/0RrGu8tJlrRo9ZxvcXlIyrGMCttEZKYy501NI12s23HuzL3xCyU0uZzFFicleA=)
+        password: ENC(yb9c5bnqFBYAoXvuBddv6A==)
+        url: ENC(RzokWg/fNE37mTHwbsQNCIRi56l+cIwcETldMDvtBcEJ1enZ4NJU0+8wSTe9WPYE6hZX0JlaG8o6r6N5lqoAsYjODbDA+isr0Ps8UmfHQQIzSqI8B3C+WvMDzPLnSNklEG4SEMVWuAc=)
 
     mvc:
         path match:

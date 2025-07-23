@@ -83,6 +83,7 @@ public class RoomChatController {
         sessions.put(sessionId, userId);
         log.info("Received a new web socket connection");
     }
+
     @EventListener(SessionDisconnectEvent.class)
     public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {
         StompHeaderAccessor headerAccesor = StompHeaderAccessor.wrap(event.getMessage());

@@ -50,6 +50,9 @@ public enum ErrorType {
     CHANNEL_IS_FULL(HttpStatus.NOT_FOUND,"입장하려는 채널이 가득 찼습니다."),
     NOT_FOUND_CHANNEL(HttpStatus.I_AM_A_TEAPOT,"채널이 존재하지 않습니다 이놈아."),
     ERR_CREATE_ROOMNUM(HttpStatus.FORBIDDEN, "방 번호 생성 실패"),
+    LOCK_INTERRUPTED_ERROR(HttpStatus.LOCKED, "Lock획득 대기 상태 중 인터럽트가 발생하였습니다."),
+    LOCK_NOT_AVAILABLE(HttpStatus.LOCKED, "Lock을 획득하지 못했습니다."),
+    UNLOCKING_A_LOCK_WHICH_IS_NOT_LOCKED(HttpStatus.LOCKED, "이미 종료된 Lock입니다."),
 
     //****************************Game****************************//
     IS_NOT_MANAGER(HttpStatus.UNAUTHORIZED, "방장만이 요청을 할 수 있습니다."),

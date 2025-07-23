@@ -26,6 +26,7 @@ public class LoginController {
     // uuid 보내면 자동 회원가입 및 token 과 userid 반환
     @PostMapping("/dev/{uuid}")
     public SuccessResponse<TestLoginResponse> login(@PathVariable("uuid") String request){
+        System.out.println("요청이 왔다 " + request);
         return SuccessResponse.of(SuccessType.LOGIN_SUCCESSFULLY,loginService.testUserLogin(request));
     }
 

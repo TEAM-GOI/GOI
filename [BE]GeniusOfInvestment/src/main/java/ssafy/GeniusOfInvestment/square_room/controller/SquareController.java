@@ -1,5 +1,6 @@
 package ssafy.GeniusOfInvestment.square_room.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
@@ -28,7 +29,7 @@ public class SquareController {
     private final SimpMessageSendingOperations messageTemplate;
 
     @PostMapping("/create") //방생성
-    public SuccessResponse<SavedRoomResponse> createRoom(@AuthenticationPrincipal User user, @RequestBody RoomCreateRequest info){
+    public SuccessResponse<SavedRoomResponse> createRoom(@AuthenticationPrincipal User user, @Valid @RequestBody RoomCreateRequest info){
 //        log.info("SquareController createRoom start");
 //        log.info("user id값"+user.getId());
         return SuccessResponse.of(SuccessType.CREATE_ROOM_SUCCESSFULLY,squareService.insertRoom(user, info));

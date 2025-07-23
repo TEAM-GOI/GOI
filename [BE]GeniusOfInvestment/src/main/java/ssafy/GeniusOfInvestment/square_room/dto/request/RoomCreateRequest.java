@@ -1,23 +1,25 @@
 package ssafy.GeniusOfInvestment.square_room.dto.request;
 
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Builder;
 
 @Builder
 public record RoomCreateRequest(
-    @NotNull
+    @NotBlank(message = "방 제목은 필수입니다.")
     String title,
     boolean isPrivate,
     String password,
 
     int status,
-    @NotNull
+    @Positive(message = "시작 년도는 양수여야 합니다.")
     int startYear,
-    @NotNull
+    @Positive(message = "종료 년도는 양수여야 합니다.")
     int endYear,
 
-    @NotNull
+    @NotNull(message = "채널 아이디는 필수입니다.")
     Long channelId
 ){
     @Builder

@@ -233,23 +233,24 @@ public class GameService {
             StringBuilder sb = new StringBuilder();
             //System.out.println(selectedOne.get(i).toString());
             sb.append("A");
-            switch (selectedOne.get(i).toString()){
-                case "FOOD":
+            //switch문에서 enum 타입도 비교가 가능
+            switch (selectedOne.get(i)){
+                case FOOD:
                     sb.append(" 식품");
                     break;
-                case "ENTER":
+                case ENTER:
                     sb.append(" 엔터");
                     break;
-                case "TELECOM":
+                case TELECOM:
                     sb.append(" 게임");
                     break;
-                case "AIR":
+                case AIR:
                     sb.append(" 항공");
                     break;
-                case "CONSTRUCT":
+                case CONSTRUCT:
                     sb.append(" 건설");
                     break;
-                case "BEAUTY":
+                case BEAUTY:
                     sb.append(" 뷰티");
                     break;
             }
@@ -262,17 +263,17 @@ public class GameService {
     public void selTwoItems(List<StockInfoResponse> stockInfos, List<Items2> selectedTwo){
         for(int i=0; i<3; i++){
             //System.out.println(selectedTwo.get(i).toString());
-            switch (selectedTwo.get(i).toString()){
-                case "BIO":
+            switch (selectedTwo.get(i)){
+                case BIO:
                     addTwoItems(stockInfos, "바이오");
                     break;
-                case "IT":
+                case IT:
                     addTwoItems(stockInfos, "IT");
                     break;
-                case "CHEMICAL":
+                case CHEMICAL:
                     addTwoItems(stockInfos, "화학");
                     break;
-                case "CAR":
+                case CAR:
                     addTwoItems(stockInfos, "자동차");
                     break;
             }
@@ -488,7 +489,7 @@ public class GameService {
             throw new CustomBadRequestException(ErrorType.NOT_FOUND_ROOM);
         }
 
-        List<GameUser> gameUserList = new ArrayList<>();
+        //List<GameUser> gameUserList = new ArrayList<>();
         int cnt = 0;
         int flag = 1;
         for(GameUser guser : room.getParticipants()){
@@ -504,11 +505,11 @@ public class GameService {
             if(guser.isReady()){
                 cnt++;
             }
-            gameUserList.add(guser);
+            //gameUserList.add(guser);
         }
 
         //GameRoom(redis)에 정보 업데이트
-        room.setParticipants(gameUserList);
+        //room.setParticipants(gameUserList);
         gameRepository.updateGameRoom(room);
 
         int status = 0;

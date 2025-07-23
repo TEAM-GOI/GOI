@@ -56,6 +56,11 @@ dependencies {
 
 	// set test db
 	testImplementation 'com.h2database:h2'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+
+	//동시성 제어
+	//redis의 메세지 브로커 기능을 활용하기 위해서 추가(분산락 구현에 사용)
+	implementation 'org.redisson:redisson-spring-boot-starter:3.26.0'
 }
 
 def querydslSrcDir = 'src/main/generated'
@@ -65,5 +70,8 @@ clean {
 tasks.withType(JavaCompile) {
 	options.generatedSourceOutputDirectory = file(querydslSrcDir)
 	options.encoding = 'UTF-8'
+}
+tasks.named('test') {
+	useJUnitPlatform()
 }
 
