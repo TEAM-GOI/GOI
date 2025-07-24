@@ -13,8 +13,8 @@ import java.util.Objects;
 @AllArgsConstructor
 public class GameUser implements Serializable, Comparable<GameUser> {
     private Long userId;
-    private boolean isReady;
-    private boolean isManager;
+    private boolean isReady; // channel service에서 이 부분 필요
+    private boolean isManager; // channel service에서 이 부분 필요
     private int point;
     private List<MyOwnInfo> buyInfos; //Information테이블의 아이디값
     private Long totalCost;

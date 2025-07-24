@@ -42,12 +42,13 @@ public class SquareService {
     public SavedRoomResponse insertRoom(User user, RoomCreateRequest info) {
         //log.info("SquareService insertRoom start");
 
-        Optional<User> u = userRepository.findById(user.getId());
-        //저장할 채널 객체 생성
-        if (u.isEmpty())
-            throw new CustomBadRequestException(ErrorType.NOT_FOUND_USER);
+        // 필요없는 중복 쿼리 삭제
+//        Optional<User> u = userRepository.findById(user.getId());
+//        //저장할 채널 객체 생성
+//        if (u.isEmpty())
+//            throw new CustomBadRequestException(ErrorType.NOT_FOUND_USER);
 
-        Channel ch = u.get().getChannel();
+        Channel ch = user.getChannel();
 
         if(ch == null){
             throw new CustomBadRequestException(ErrorType.FAIL_TO_CREATE_ROOM);
